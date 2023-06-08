@@ -86,18 +86,32 @@ def generate_graph_with_special_lamps(normal_lamp_count, special_lamp_count):
     node_name = finish_node
     graph[node_name] = {}
 
-    # élek generálása
+    # Élek generálása
     nodes = list(graph.keys())
-    for i in range(0, len(nodes)):
-        for j in range(i + 1, len(nodes)):
+
+    for i in range(len(nodes)):
+        current_node = nodes[i]
+        neighbors = nodes[i+1:]  # Csak a későbbi csúcsok között generál éleket
+
+        number_of_edges = random.randint(
+            0, len(neighbors))  # Véletlenszerű élek száma
+        # Véletlenszerűen kiválasztott szomszédok
+        selected_neighbors = select_random_elements(neighbors, number_of_edges)
+
+        for j in range(len(selected_neighbors)):
+            neighbor_node = selected_neighbors[j]
             weight = random.randint(1, 5)
-            if nodes[i] != nodes[j]:
-                if nodes[j] not in graph[nodes[i]]:
-                    graph[nodes[i]][nodes[j]] = weight
-                else:
-                    graph[nodes[i]][nodes[j]] += weight
+            if current_node not in graph:
+                graph[current_node] = {}
+            graph[current_node][neighbor_node] = weight
 
     return graph
+
+
+def select_random_elements(array, count):
+    shuffled = array[:]
+    random.shuffle(shuffled)
+    return shuffled[:count]
 
 
 graph = generate_graph_with_special_lamps(5, 2)
