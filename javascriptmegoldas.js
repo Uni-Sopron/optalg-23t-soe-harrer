@@ -4,41 +4,61 @@ function randomNumber(min, max) {
 
 function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
   const graph = {};
-  let starterNode = 'Egyetem'
-  let finishnode = 'Harrer'
+  let starterNode = 'Egyetem';
+  let finishNode = 'Harrer';
 
   // Normális lámpás csúcsok generálása
   for (let i = 1; i <= normalLampCount; i++) {
-      if (i ===1){
-          const nodeName = starterNode;
-          graph[nodeName] = {};
-      } else if (i < normalLampCount ){
-          const nodeName = `Node${i}`;
-          graph[nodeName] = {};
-      }
+    if (i === 1) {
+      const nodeName = starterNode;
+      graph[nodeName] = {};
+    } else if (i < normalLampCount) {
+      const nodeName = `Node${i}`;
+      graph[nodeName] = {};
+    }
   }
 
   // Speciális lámpás csúcsok generálása
   for (let i = 1; i <= specialLampCount; i++) {
-      const nodeName = `Specialnode${i}`;
-      graph[nodeName] = {};
+    const nodeName = `Specialnode${i}`;
+    graph[nodeName] = {};
   }
-  const nodeName = finishnode;
+  const nodeName = finishNode;
   graph[nodeName] = {};
 
-  //élek generálása
+  // Élek generálása
   const nodes = Object.keys(graph);
-  
 
   for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-          const weight = randomNumber(1, 5);
-          graph[nodes[i]][nodes[j]] = weight;
+    const currentNode = nodes[i];
+    const neighbors = nodes.slice(i + 1); // Csak a későbbi csúcsok között generál éleket
 
-      }
+    const numberOfEdges = randomNumber(0, neighbors.length); // Véletlenszerű élek száma
+    const selectedNeighbors = selectRandomElements(neighbors, numberOfEdges); // Véletlenszerűen kiválasztott szomszédok
+
+    for (let j = 0; j < selectedNeighbors.length; j++) {
+      const neighborNode = selectedNeighbors[j];
+      const weight = randomNumber(1, 5);
+      graph[currentNode][neighborNode] = weight;
+    }
   }
 
   return graph;
+}
+
+function selectRandomElements(array, count) {
+  const shuffled = array.slice();
+  let i = array.length;
+  let temp, randomIndex;
+
+  while (i-- > 0) {
+    randomIndex = Math.floor((i + 1) * Math.random());
+    temp = shuffled[randomIndex];
+    shuffled[randomIndex] = shuffled[i];
+    shuffled[i] = temp;
+  }
+
+  return shuffled.slice(0, count);
 }
 
 function findShortest(exampleGraph, start, end, maxLamps) {
@@ -105,7 +125,7 @@ function findShortest(exampleGraph, start, end, maxLamps) {
   }
   
 
-  const exampleGraph = generateGraphWithSpecialLamps(6,2);
+  const exampleGraph = generateGraphWithSpecialLamps(7,3);
   console.log(exampleGraph);
   //kezdő, végső csúcs inicializálása, és amximum lámpa generálás
 
