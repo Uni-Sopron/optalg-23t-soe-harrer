@@ -1,21 +1,21 @@
+const fs = require('fs');
+
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
 function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
   const graph = {};
-  let starterNode = 'Egyetem';
-  let finishNode = 'Harrer';
+  const starterNode = 'Egyetem';
+  const finishNode = 'Harrer';
+
+  // Egyetem csúcs hozzáadása a gráfhoz
+  graph[starterNode] = {};
 
   // Normális lámpás csúcsok generálása
   for (let i = 1; i <= normalLampCount; i++) {
-    if (i === 1) {
-      const nodeName = starterNode;
-      graph[nodeName] = {};
-    } else if (i < normalLampCount) {
-      const nodeName = `Node${i}`;
-      graph[nodeName] = {};
-    }
+    const nodeName = `Node${i}`;
+    graph[nodeName] = {};
   }
 
   // Speciális lámpás csúcsok generálása
@@ -23,8 +23,9 @@ function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
     const nodeName = `Specialnode${i}`;
     graph[nodeName] = {};
   }
-  const nodeName = finishNode;
-  graph[nodeName] = {};
+
+  // Harrer csúcs hozzáadása a gráfhoz
+  graph[finishNode] = {};
 
   // Élek generálása
   const nodes = Object.keys(graph);
@@ -33,13 +34,14 @@ function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
     const currentNode = nodes[i];
     const neighbors = nodes.slice(i + 1); // Csak a későbbi csúcsok között generál éleket
 
-    const numberOfEdges = randomNumber(0, neighbors.length); // Véletlenszerű élek száma
+    const numberOfEdges = randomNumber(1, Math.min(neighbors.length, 5)); // Módosított élek száma (1 és a későbbi csúcsok száma között, maximum 5)
     const selectedNeighbors = selectRandomElements(neighbors, numberOfEdges); // Véletlenszerűen kiválasztott szomszédok
 
     for (let j = 0; j < selectedNeighbors.length; j++) {
       const neighborNode = selectedNeighbors[j];
       const weight = randomNumber(1, 5);
       graph[currentNode][neighborNode] = weight;
+      graph[neighborNode][currentNode] = weight; // Hozzáadott él a szomszédos csúcsok között
     }
   }
 
@@ -124,8 +126,20 @@ function findShortest(exampleGraph, start, end, maxLamps) {
     return shortestPath;
   }
   
-
-  const exampleGraph = generateGraphWithSpecialLamps(7,3);
+  function exportGraphToJSON(graph, fileName) {
+    const data = JSON.stringify(graph, null, 2);
+  
+    fs.writeFile(fileName, data, (err) => {
+      if (err) {
+        console.error(`Error exporting graph to JSON: ${err}`);
+      } else {
+        console.log(`Graph successfully exported to ${fileName}`);
+      }
+    });
+  }
+  
+  const exampleGraph = generateGraphWithSpecialLamps(100,20);
+  exportGraphToJSON(exampleGraph, 'graph4.json')
   console.log(exampleGraph);
   //kezdő, végső csúcs inicializálása, és amximum lámpa generálás
 
