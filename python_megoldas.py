@@ -1,21 +1,59 @@
-from collections import deque
+import json
 import random
 
 
-def findShorthestPath(graph, start, end, max_lamps):
-    """
-    Legrövidebb útvonalat keres az adott gráfban a kezdőponttól a végpontig, figyelembe véve a maximális lámpás kereszteződések számát.
+def random_number(min_val, max_val):
+    return random.randint(min_val, max_val)
 
-    Args:
-        graph (dict): A gráf reprezentációja, amely a csúcsok és azok közötti élek tárolására szolgál.
-        start (str): A kezdőcsúcs neve.
-        end (str): A végcsúcs neve.
-        max_lamps (int): A maximális lámpás kereszteződések száma, amelyet az útvonalban engedélyezünk.
 
-    Returns:
-        list or None: A legrövidebb útvonal csúcsok listájaként, vagy None, ha nincs elérhető útvonal.
-    """
-    queue = deque()
+def generate_graph_with_special_lamps(normal_lamp_count, special_lamp_count):
+    graph = {}
+    starter_node = 'Egyetem'
+    finish_node = 'Harrer'
+
+    # Egyetem csúcs hozzáadása a gráfhoz
+    graph[starter_node] = {}
+
+    # Normális lámpás csúcsok generálása
+    for i in range(1, normal_lamp_count + 1):
+        node_name = f"Node{i}"
+        graph[node_name] = {}
+
+    # Speciális lámpás csúcsok generálása
+    for i in range(1, special_lamp_count + 1):
+        node_name = f"Specialnode{i}"
+        graph[node_name] = {}
+
+    # Harrer csúcs hozzáadása a gráfhoz
+    graph[finish_node] = {}
+
+    # Élek generálása
+    nodes = list(graph.keys())
+
+    for i in range(len(nodes)):
+        current_node = nodes[i]
+        neighbors = nodes[i+1:]
+
+        number_of_edges = random_number(1, min(len(neighbors), 5))
+        selected_neighbors = select_random_elements(neighbors, number_of_edges)
+
+        for j in range(len(selected_neighbors)):
+            neighbor_node = selected_neighbors[j]
+            weight = random_number(1, 5)
+            graph[current_node][neighbor_node] = weight
+            graph[neighbor_node][current_node] = weight
+
+    return graph
+
+
+def select_random_elements(array, count):
+    shuffled = array[:]
+    random.shuffle(shuffled)
+    return shuffled[:count]
+
+
+def find_shortest_path(graph, start, end, max_lamps):
+    queue = []
     distances = {}
     visited = {}
     path = {}
@@ -29,7 +67,7 @@ def findShorthestPath(graph, start, end, max_lamps):
     queue.append(start)
 
     while queue:
-        current_node = queue.popleft()
+        current_node = queue.pop(0)
         visited[current_node] = True
 
         if current_node == end:
@@ -53,10 +91,12 @@ def findShorthestPath(graph, start, end, max_lamps):
     lamps = 0
 
     while current_node != start:
-        if graph[current_node] and 'Specialnode' in graph[current_node] and lamps < max_lamps:
+        if current_node.startswith('Specialnode') and lamps < max_lamps:
             shortest_path.insert(0, 'Specialnode')
             lamps += 1
-        shortest_path.insert(0, current_node)
+        else:
+            shortest_path.insert(0, current_node)
+
         current_node = path[current_node]
 
     shortest_path.insert(0, start)
@@ -64,62 +104,21 @@ def findShorthestPath(graph, start, end, max_lamps):
     return shortest_path
 
 
-def generate_graph_with_special_lamps(normal_lamp_count, special_lamp_count):
-    graph = {}
-    starter_node = 'Egyetem'
-    finish_node = 'Harrer'
-
-    # Normális lámpás csúcsok generálása
-    for i in range(1, normal_lamp_count + 1):
-        if i == 1:
-            node_name = starter_node
-            graph[node_name] = {}
-        elif i < normal_lamp_count:
-            node_name = f"Node{i}"
-            graph[node_name] = {}
-
-    # Speciális lámpás csúcsok generálása
-    for i in range(1, special_lamp_count + 1):
-        node_name = f"Specialnode{i}"
-        graph[node_name] = {}
-
-    node_name = finish_node
-    graph[node_name] = {}
-
-    # Élek generálása
-    nodes = list(graph.keys())
-
-    for i in range(len(nodes)):
-        current_node = nodes[i]
-        neighbors = nodes[i+1:]  # Csak a későbbi csúcsok között generál éleket
-
-        number_of_edges = random.randint(
-            0, len(neighbors))  # Véletlenszerű élek száma
-        # Véletlenszerűen kiválasztott szomszédok
-        selected_neighbors = select_random_elements(neighbors, number_of_edges)
-
-        for j in range(len(selected_neighbors)):
-            neighbor_node = selected_neighbors[j]
-            weight = random.randint(1, 5)
-            if current_node not in graph:
-                graph[current_node] = {}
-            graph[current_node][neighbor_node] = weight
-
-    return graph
+def export_graph_to_json(graph, file_name):
+    with open(file_name, 'w') as file:
+        json.dump(graph, file, indent=2)
 
 
-def select_random_elements(array, count):
-    shuffled = array[:]
-    random.shuffle(shuffled)
-    return shuffled[:count]
+f = open('graph3.json')
+example_graph = json.load(f)
+export_graph_to_json(example_graph, 'graph4.json')
 
-
-graph = generate_graph_with_special_lamps(5, 2)
 start_node = 'Egyetem'
 end_node = 'Harrer'
 max_lamps = 2
 
-shortest_path = findShorthestPath(graph, start_node, end_node, max_lamps)
+shortest_path = find_shortest_path(
+    example_graph, start_node, end_node, max_lamps)
 
 if shortest_path is None:
     print('Nincs elérhető útvonal.')
