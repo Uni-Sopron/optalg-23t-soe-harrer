@@ -1,5 +1,4 @@
 {
-  "graph1": {
     "Egyetem": { "Node4": 4, "Node5": 4, "Node6": 3 },
     "Node2": {
       "Node3": 1,
@@ -20,4 +19,3 @@
     "Harrer": {}
   }
  
-}

@@ -125,7 +125,7 @@ function findShortest(exampleGraph, start, end, maxLamps) {
   
     return shortestPath;
   }
-  
+  //graph exportálás jsonbe
   function exportGraphToJSON(graph, fileName) {
     const data = JSON.stringify(graph, null, 2);
   
@@ -138,9 +138,9 @@ function findShortest(exampleGraph, start, end, maxLamps) {
     });
   }
   
-  const exampleGraph = generateGraphWithSpecialLamps(100,20);
-  exportGraphToJSON(exampleGraph, 'graph4.json')
-  console.log(exampleGraph);
+  const exampleGraph = require('./graph3.json')
+  
+  
   //kezdő, végső csúcs inicializálása, és amximum lámpa generálás
 
   const startNode = 'Egyetem';
