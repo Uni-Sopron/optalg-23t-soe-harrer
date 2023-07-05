@@ -3,7 +3,7 @@ import random
 
 
 def findShorthestPath(graph, start, end, max_lamps):
-    """
+    """ 
     Legrövidebb útvonalat keres az adott gráfban a kezdőponttól a végpontig, figyelembe véve a maximális lámpás kereszteződések számát.
 
     Args:

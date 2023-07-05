@@ -3,7 +3,7 @@ const fs = require('fs');
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
-
+ 
 function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
   const graph = {};
   const starterNode = 'Egyetem';
