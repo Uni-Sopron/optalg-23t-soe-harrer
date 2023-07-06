@@ -1,0 +1,844 @@
+{
+    "Egyetem": {
+      "Node39": 1,
+      "Node42": 4,
+      "Specialnode2": 2
+    },
+    "Node1": {
+      "Specialnode1": 3,
+      "Node8": 4,
+      "Node33": 4
+    },
+    "Node2": {
+      "Specialnode20": 1,
+      "Node70": 4,
+      "Node97": 4,
+      "Node30": 1
+    },
+    "Node3": {
+      "Node74": 1,
+      "Node49": 1
+    },
+    "Node4": {
+      "Node28": 4,
+      "Node61": 2
+    },
+    "Node5": {
+      "Node35": 1,
+      "Node92": 3,
+      "Specialnode1": 4,
+      "Node85": 1
+    },
+    "Node6": {
+      "Node87": 2,
+      "Node54": 4,
+      "Node91": 2,
+      "Node53": 4
+    },
+    "Node7": {
+      "Node25": 3,
+      "Node22": 4,
+      "Node76": 2
+    },
+    "Node8": {
+      "Node1": 4,
+      "Specialnode14": 4,
+      "Node41": 4,
+      "Node59": 4,
+      "Node80": 2
+    },
+    "Node9": {
+      "Node20": 4
+    },
+    "Node10": {
+      "Node92": 1,
+      "Node47": 1
+    },
+    "Node11": {
+      "Node26": 1,
+      "Node20": 3,
+      "Node27": 2,
+      "Node80": 4
+    },
+    "Node12": {
+      "Node22": 3,
+      "Node44": 3
+    },
+    "Node13": {
+      "Specialnode8": 4,
+      "Node56": 3,
+      "Node17": 2
+    },
+    "Node14": {
+      "Node30": 1,
+      "Node76": 3
+    },
+    "Node15": {
+      "Node97": 4,
+      "Specialnode3": 1,
+      "Node65": 1,
+      "Node69": 2
+    },
+    "Node16": {
+      "Node88": 1,
+      "Node64": 3,
+      "Node87": 1
+    },
+    "Node17": {
+      "Node13": 2,
+      "Node75": 2
+    },
+    "Node18": {
+      "Node41": 4,
+      "Node50": 2
+    },
+    "Node19": {
+      "Node28": 4,
+      "Specialnode15": 4
+    },
+    "Node20": {
+      "Node9": 4,
+      "Node11": 3,
+      "Node85": 3,
+      "Specialnode19": 4,
+      "Node57": 2,
+      "Specialnode7": 3
+    },
+    "Node21": {
+      "Node36": 4
+    },
+    "Node22": {
+      "Node7": 4,
+      "Node12": 3,
+      "Node62": 3
+    },
+    "Node23": {
+      "Node52": 3,
+      "Node84": 3,
+      "Node64": 1,
+      "Specialnode2": 2
+    },
+    "Node24": {
+      "Node57": 4,
+      "Node48": 3,
+      "Node34": 3,
+      "Node94": 3
+    },
+    "Node25": {
+      "Node7": 3,
+      "Node99": 2
+    },
+    "Node26": {
+      "Node11": 1,
+      "Node46": 4,
+      "Node89": 1,
+      "Node27": 4
+    },
+    "Node27": {
+      "Node11": 2,
+      "Node26": 4,
+      "Node60": 2,
+      "Node31": 2,
+      "Specialnode9": 1
+    },
+    "Node28": {
+      "Node4": 4,
+      "Node19": 4,
+      "Node79": 3,
+      "Specialnode19": 4
+    },
+    "Node29": {
+      "Node87": 1,
+      "Specialnode4": 2,
+      "Specialnode3": 4,
+      "Specialnode5": 4
+    },
+    "Node30": {
+      "Node2": 1,
+      "Node14": 1,
+      "Node68": 1
+    },
+    "Node31": {
+      "Node27": 2,
+      "Node53": 1,
+      "Node36": 3
+    },
+    "Node32": {
+      "Node61": 1
+    },
+    "Node33": {
+      "Node1": 4,
+      "Specialnode1": 4,
+      "Specialnode16": 1,
+      "Node96": 3
+    },
+    "Node34": {
+      "Node24": 3,
+      "Node50": 1,
+      "Node38": 1
+    },
+    "Node35": {
+      "Node5": 1,
+      "Node84": 3
+    },
+    "Node36": {
+      "Node21": 4,
+      "Node31": 3,
+      "Node80": 2,
+      "Node72": 4,
+      "Specialnode13": 2
+    },
+    "Node37": {
+      "Node46": 3,
+      "Node85": 1
+    },
+    "Node38": {
+      "Node34": 1,
+      "Node48": 3,
+      "Specialnode12": 1,
+      "Node45": 2,
+      "Node51": 4
+    },
+    "Node39": {
+      "Egyetem": 1,
+      "Node44": 2,
+      "Specialnode11": 4,
+      "Node47": 2,
+      "Specialnode20": 1
+    },
+    "Node40": {
+      "Node62": 3,
+      "Node88": 3,
+      "Node78": 3
+    },
+    "Node41": {
+      "Node8": 4,
+      "Node18": 4,
+      "Specialnode13": 4
+    },
+    "Node42": {
+      "Egyetem": 4,
+      "Specialnode6": 4,
+      "Node50": 1,
+      "Node68": 1,
+      "Specialnode15": 4
+    },
+    "Node43": {
+      "Node98": 1,
+      "Specialnode8": 1
+    },
+    "Node44": {
+      "Node12": 3,
+      "Node39": 2,
+      "Node48": 1
+    },
+    "Node45": {
+      "Node38": 2,
+      "Node96": 2,
+      "Node76": 3,
+      "Specialnode11": 2,
+      "Node65": 4
+    },
+    "Node46": {
+      "Node26": 4,
+      "Node37": 3,
+      "Node94": 1,
+      "Node64": 3
+    },
+    "Node47": {
+      "Node10": 1,
+      "Node39": 2,
+      "Node94": 3,
+      "Node81": 1,
+      "Node95": 2
+    },
+    "Node48": {
+      "Node24": 3,
+      "Node38": 3,
+      "Node44": 1,
+      "Node86": 2
+    },
+    "Node49": {
+      "Node3": 1,
+      "Specialnode13": 3,
+      "Specialnode17": 2
+    },
+    "Node50": {
+      "Node18": 2,
+      "Node34": 1,
+      "Node42": 1,
+      "Specialnode5": 4
+    },
+    "Node51": {
+      "Node38": 4,
+      "Node100": 4,
+      "Node96": 1,
+      "Node58": 3
+    },
+    "Node52": {
+      "Node23": 3,
+      "Node89": 2,
+      "Node67": 3,
+      "Node95": 4
+    },
+    "Node53": {
+      "Node6": 4,
+      "Node31": 1,
+      "Node64": 2,
+      "Node71": 1
+    },
+    "Node54": {
+      "Node6": 4,
+      "Node88": 3,
+      "Node86": 1,
+      "Node67": 2,
+      "Node75": 1
+    },
+    "Node55": {
+      "Node99": 2
+    },
+    "Node56": {
+      "Node13": 3,
+      "Specialnode19": 1
+    },
+    "Node57": {
+      "Node20": 2,
+      "Node24": 4,
+      "Node70": 4,
+      "Node95": 4,
+      "Node64": 1
+    },
+    "Node58": {
+      "Node51": 3,
+      "Node74": 3,
+      "Node96": 3
+    },
+    "Node59": {
+      "Node8": 4,
+      "Node60": 4,
+      "Specialnode20": 4
+    },
+    "Node60": {
+      "Node27": 2,
+      "Node59": 4,
+      "Node90": 3,
+      "Node96": 3,
+      "Specialnode7": 3
+    },
+    "Node61": {
+      "Node4": 2,
+      "Node32": 1,
+      "Node95": 1,
+      "Node67": 3,
+      "Node79": 1
+    },
+    "Node62": {
+      "Node22": 3,
+      "Node40": 3,
+      "Specialnode8": 4
+    },
+    "Node63": {
+      "Specialnode19": 1,
+      "Specialnode14": 2,
+      "Node70": 2
+    },
+    "Node64": {
+      "Node16": 3,
+      "Node23": 1,
+      "Node46": 3,
+      "Node53": 2,
+      "Node57": 1,
+      "Node91": 4
+    },
+    "Node65": {
+      "Node15": 1,
+      "Node45": 4,
+      "Specialnode18": 3,
+      "Node90": 3,
+      "Node84": 1,
+      "Specialnode8": 1
+    },
+    "Node66": {
+      "Specialnode4": 1,
+      "Node84": 3,
+      "Node91": 1,
+      "Node88": 1
+    },
+    "Node67": {
+      "Node52": 3,
+      "Node54": 2,
+      "Node61": 3,
+      "Node92": 1,
+      "Specialnode5": 3,
+      "Node88": 3
+    },
+    "Node68": {
+      "Node30": 1,
+      "Node42": 1,
+      "Node96": 4,
+      "Node91": 3
+    },
+    "Node69": {
+      "Node15": 2,
+      "Node93": 4
+    },
+    "Node70": {
+      "Node2": 4,
+      "Node57": 4,
+      "Node63": 2,
+      "Specialnode6": 2
+    },
+    "Node71": {
+      "Node53": 1,
+      "Specialnode6": 4,
+      "Specialnode15": 3,
+      "Node90": 3
+    },
+    "Node72": {
+      "Node36": 4,
+      "Node93": 2,
+      "Specialnode17": 3,
+      "Node76": 1,
+      "Specialnode9": 3
+    },
+    "Node73": {
+      "Node84": 4,
+      "Node89": 1,
+      "Node75": 2
+    },
+    "Node74": {
+      "Node3": 1,
+      "Node58": 3,
+      "Node98": 4,
+      "Specialnode15": 4,
+      "Node84": 4
+    },
+    "Node75": {
+      "Node17": 2,
+      "Node54": 1,
+      "Node73": 2,
+      "Specialnode7": 4,
+      "Node83": 1
+    },
+    "Node76": {
+      "Node7": 2,
+      "Node14": 3,
+      "Node45": 3,
+      "Node72": 1,
+      "Node80": 4,
+      "Specialnode11": 2,
+      "Specialnode12": 3
+    },
+    "Node77": {
+      "Node94": 3
+    },
+    "Node78": {
+      "Node40": 3,
+      "Specialnode20": 4,
+      "Specialnode12": 2
+    },
+    "Node79": {
+      "Node28": 3,
+      "Node61": 1,
+      "Specialnode10": 2,
+      "Node93": 3,
+      "Node84": 3,
+      "Specialnode7": 1
+    },
+    "Node80": {
+      "Node8": 2,
+      "Node11": 4,
+      "Node36": 2,
+      "Node76": 4,
+      "Specialnode4": 4,
+      "Specialnode12": 2,
+      "Node89": 1
+    },
+    "Node81": {
+      "Node47": 1,
+      "Specialnode17": 3,
+      "Specialnode5": 2,
+      "Node86": 4
+    },
+    "Node82": {
+      "Harrer": 4,
+      "Specialnode3": 3
+    },
+    "Node83": {
+      "Node75": 1,
+      "Specialnode7": 3,
+      "Node94": 1,
+      "Specialnode3": 4
+    },
+    "Node84": {
+      "Node23": 3,
+      "Node35": 3,
+      "Node65": 1,
+      "Node66": 3,
+      "Node73": 4,
+      "Node74": 4,
+      "Node79": 3,
+      "Node86": 1,
+      "Node96": 1,
+      "Node89": 1
+    },
+    "Node85": {
+      "Node5": 1,
+      "Node20": 3,
+      "Node37": 1,
+      "Specialnode1": 3,
+      "Harrer": 4
+    },
+    "Node86": {
+      "Node48": 2,
+      "Node54": 1,
+      "Node81": 4,
+      "Node84": 1,
+      "Harrer": 4,
+      "Specialnode18": 1
+    },
+    "Node87": {
+      "Node6": 2,
+      "Node16": 1,
+      "Node29": 1,
+      "Node92": 3,
+      "Node94": 3,
+      "Specialnode1": 4,
+      "Specialnode18": 4
+    },
+    "Node88": {
+      "Node16": 1,
+      "Node40": 3,
+      "Node54": 3,
+      "Node66": 1,
+      "Node67": 3,
+      "Specialnode12": 3,
+      "Specialnode6": 2
+    },
+    "Node89": {
+      "Node26": 1,
+      "Node52": 2,
+      "Node73": 1,
+      "Node80": 1,
+      "Node84": 1,
+      "Node99": 2,
+      "Node90": 2
+    },
+    "Node90": {
+      "Node60": 3,
+      "Node65": 3,
+      "Node71": 3,
+      "Node89": 2,
+      "Specialnode3": 1,
+      "Specialnode7": 1
+    },
+    "Node91": {
+      "Node6": 2,
+      "Node64": 4,
+      "Node66": 1,
+      "Node68": 3,
+      "Specialnode7": 1
+    },
+    "Node92": {
+      "Node5": 3,
+      "Node10": 1,
+      "Node67": 1,
+      "Node87": 3,
+      "Specialnode8": 4
+    },
+    "Node93": {
+      "Node69": 4,
+      "Node72": 2,
+      "Node79": 3,
+      "Node98": 3,
+      "Specialnode3": 1
+    },
+    "Node94": {
+      "Node24": 3,
+      "Node46": 1,
+      "Node47": 3,
+      "Node77": 3,
+      "Node83": 1,
+      "Node87": 3,
+      "Specialnode19": 2
+    },
+    "Node95": {
+      "Node47": 2,
+      "Node52": 4,
+      "Node57": 4,
+      "Node61": 1,
+      "Specialnode16": 1
+    },
+    "Node96": {
+      "Node33": 3,
+      "Node45": 2,
+      "Node51": 1,
+      "Node58": 3,
+      "Node60": 3,
+      "Node68": 4,
+      "Node84": 1,
+      "Specialnode14": 3,
+      "Specialnode5": 4,
+      "Specialnode10": 2
+    },
+    "Node97": {
+      "Node2": 4,
+      "Node15": 4,
+      "Specialnode13": 4,
+      "Specialnode17": 2,
+      "Node99": 1
+    },
+    "Node98": {
+      "Node43": 1,
+      "Node74": 4,
+      "Node93": 3,
+      "Specialnode1": 2,
+      "Specialnode17": 3,
+      "Specialnode18": 4
+    },
+    "Node99": {
+      "Node25": 2,
+      "Node55": 2,
+      "Node89": 2,
+      "Node97": 1,
+      "Specialnode2": 2
+    },
+    "Node100": {
+      "Node51": 4,
+      "Harrer": 4,
+      "Specialnode3": 1,
+      "Specialnode9": 1,
+      "Specialnode13": 2
+    },
+    "Specialnode1": {
+      "Node1": 3,
+      "Node5": 4,
+      "Node33": 4,
+      "Node85": 3,
+      "Node87": 4,
+      "Node98": 2,
+      "Specialnode18": 1
+    },
+    "Specialnode2": {
+      "Egyetem": 2,
+      "Node23": 2,
+      "Node99": 2,
+      "Specialnode4": 4,
+      "Specialnode8": 1,
+      "Specialnode18": 2,
+      "Specialnode10": 1
+    },
+    "Specialnode3": {
+      "Node15": 1,
+      "Node29": 4,
+      "Node82": 3,
+      "Node83": 4,
+      "Node90": 1,
+      "Node93": 1,
+      "Node100": 1,
+      "Specialnode15": 1,
+      "Specialnode18": 4,
+      "Specialnode11": 2,
+      "Specialnode10": 3
+    },
+    "Specialnode4": {
+      "Node29": 2,
+      "Node66": 1,
+      "Node80": 4,
+      "Specialnode2": 4,
+      "Specialnode5": 2
+    },
+    "Specialnode5": {
+      "Node29": 4,
+      "Node50": 4,
+      "Node67": 3,
+      "Node81": 2,
+      "Node96": 4,
+      "Specialnode4": 2,
+      "Specialnode7": 1,
+      "Specialnode9": 1
+    },
+    "Specialnode6": {
+      "Node42": 4,
+      "Node70": 2,
+      "Node71": 4,
+      "Node88": 2,
+      "Specialnode16": 1,
+      "Specialnode9": 3,
+      "Specialnode18": 2,
+      "Specialnode13": 2
+    },
+    "Specialnode7": {
+      "Node20": 3,
+      "Node60": 3,
+      "Node75": 4,
+      "Node79": 1,
+      "Node83": 3,
+      "Node90": 1,
+      "Node91": 1,
+      "Specialnode5": 1,
+      "Specialnode20": 1,
+      "Specialnode10": 1,
+      "Specialnode17": 3,
+      "Specialnode11": 4
+    },
+    "Specialnode8": {
+      "Node13": 4,
+      "Node43": 1,
+      "Node62": 4,
+      "Node65": 1,
+      "Node92": 4,
+      "Specialnode2": 1,
+      "Harrer": 4,
+      "Specialnode12": 3,
+      "Specialnode10": 2
+    },
+    "Specialnode9": {
+      "Node27": 1,
+      "Node72": 3,
+      "Node100": 1,
+      "Specialnode5": 1,
+      "Specialnode6": 3,
+      "Specialnode15": 1,
+      "Specialnode16": 2
+    },
+    "Specialnode10": {
+      "Node79": 2,
+      "Node96": 2,
+      "Specialnode2": 1,
+      "Specialnode3": 3,
+      "Specialnode7": 1,
+      "Specialnode8": 2,
+      "Specialnode20": 2,
+      "Specialnode18": 1,
+      "Specialnode16": 3,
+      "Specialnode11": 4
+    },
+    "Specialnode11": {
+      "Node39": 4,
+      "Node45": 2,
+      "Node76": 2,
+      "Specialnode3": 2,
+      "Specialnode7": 4,
+      "Specialnode10": 4,
+      "Specialnode19": 1,
+      "Specialnode16": 2,
+      "Specialnode18": 1
+    },
+    "Specialnode12": {
+      "Node38": 1,
+      "Node76": 3,
+      "Node78": 2,
+      "Node80": 2,
+      "Node88": 3,
+      "Specialnode8": 3,
+      "Specialnode15": 1,
+      "Specialnode13": 4,
+      "Specialnode14": 2,
+      "Specialnode19": 3
+    },
+    "Specialnode13": {
+      "Node36": 2,
+      "Node41": 4,
+      "Node49": 3,
+      "Node97": 4,
+      "Node100": 2,
+      "Specialnode6": 2,
+      "Specialnode12": 4,
+      "Specialnode20": 2,
+      "Specialnode16": 1,
+      "Specialnode17": 2
+    },
+    "Specialnode14": {
+      "Node8": 4,
+      "Node63": 2,
+      "Node96": 3,
+      "Specialnode12": 2,
+      "Specialnode18": 1,
+      "Specialnode16": 1,
+      "Harrer": 1,
+      "Specialnode15": 2
+    },
+    "Specialnode15": {
+      "Node19": 4,
+      "Node42": 4,
+      "Node71": 3,
+      "Node74": 4,
+      "Specialnode3": 1,
+      "Specialnode9": 1,
+      "Specialnode12": 1,
+      "Specialnode14": 2,
+      "Specialnode17": 4
+    },
+    "Specialnode16": {
+      "Node33": 1,
+      "Node95": 1,
+      "Specialnode6": 1,
+      "Specialnode9": 2,
+      "Specialnode10": 3,
+      "Specialnode11": 2,
+      "Specialnode13": 1,
+      "Specialnode14": 1,
+      "Harrer": 3
+    },
+    "Specialnode17": {
+      "Node49": 2,
+      "Node72": 3,
+      "Node81": 3,
+      "Node97": 2,
+      "Node98": 3,
+      "Specialnode7": 3,
+      "Specialnode13": 2,
+      "Specialnode15": 4,
+      "Specialnode20": 4
+    },
+    "Specialnode18": {
+      "Node65": 3,
+      "Node86": 1,
+      "Node87": 4,
+      "Node98": 4,
+      "Specialnode1": 1,
+      "Specialnode2": 2,
+      "Specialnode3": 4,
+      "Specialnode6": 2,
+      "Specialnode10": 1,
+      "Specialnode11": 1,
+      "Specialnode14": 1,
+      "Specialnode19": 4,
+      "Harrer": 2
+    },
+    "Specialnode19": {
+      "Node20": 4,
+      "Node28": 4,
+      "Node56": 1,
+      "Node63": 1,
+      "Node94": 2,
+      "Specialnode11": 1,
+      "Specialnode12": 3,
+      "Specialnode18": 4,
+      "Specialnode20": 4
+    },
+    "Specialnode20": {
+      "Node2": 1,
+      "Node39": 1,
+      "Node59": 4,
+      "Node78": 4,
+      "Specialnode7": 1,
+      "Specialnode10": 2,
+      "Specialnode13": 2,
+      "Specialnode17": 4,
+      "Specialnode19": 4,
+      "Harrer": 3
+    },
+    "Harrer": {
+      "Node82": 4,
+      "Node85": 4,
+      "Node86": 4,
+      "Node100": 4,
+      "Specialnode8": 4,
+      "Specialnode14": 1,
+      "Specialnode16": 3,
+      "Specialnode18": 2,
+      "Specialnode20": 3
+    }
+  }
