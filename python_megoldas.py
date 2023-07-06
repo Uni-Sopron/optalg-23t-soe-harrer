@@ -1,7 +1,6 @@
 import json
 import random
 
-
 def random_number(min_val, max_val):
     return random.randint(min_val, max_val)
 
@@ -55,54 +54,53 @@ def select_random_elements(array, count):
 def find_shortest_path(graph, start, end, max_lamps):
     queue = []
     distances = {}
-    visited = {}
+    lamps_touched = {}
     path = {}
 
     for node in graph:
         distances[node] = float('inf')
-        visited[node] = False
+        lamps_touched[node] = 0
         path[node] = None
 
     distances[start] = 0
-    queue.append(start)
+    lamps_touched[start] = 0
+    queue.append((distances[start], lamps_touched[start], start))
 
     while queue:
-        current_node = queue.pop(0)
-        visited[current_node] = True
+        queue.sort()
+        current_distance, current_lamps, current_node = queue.pop(0)
 
         if current_node == end:
             break
+
+        if current_distance > distances[current_node] or current_lamps > lamps_touched[current_node]:
+            continue
 
         neighbors = graph[current_node]
 
         for neighbor, distance in neighbors.items():
             new_distance = distances[current_node] + distance
+            new_lamps = lamps_touched[current_node] + (neighbor.startswith('Specialnode'))
 
-            if new_distance < distances[neighbor] and not visited[neighbor]:
+            if new_distance < distances[neighbor] and new_lamps <= max_lamps:
                 distances[neighbor] = new_distance
+                lamps_touched[neighbor] = new_lamps
                 path[neighbor] = current_node
-                queue.append(neighbor)
+                queue.append((distances[neighbor], lamps_touched[neighbor], neighbor))
 
     if path[end] is None:
         return None
 
     shortest_path = []
     current_node = end
-    lamps = 0
 
     while current_node != start:
-        if current_node.startswith('Specialnode') and lamps < max_lamps:
-            shortest_path.insert(0, 'Specialnode')
-            lamps += 1
-        else:
-            shortest_path.insert(0, current_node)
-
+        shortest_path.insert(0, current_node)
         current_node = path[current_node]
 
     shortest_path.insert(0, start)
 
     return shortest_path
-
 
 def export_graph_to_json(graph, file_name):
     with open(file_name, 'w') as file:
