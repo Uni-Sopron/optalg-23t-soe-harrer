@@ -63,68 +63,67 @@ function selectRandomElements(array, count) {
   return shuffled.slice(0, count);
 }
 
-function findShortest(exampleGraph, start, end, maxLamps) {
-    //értékek beállítása
-    const currentQueue = [];
-    const distances = {};
-    const alreadyVisited = {};
-    const path = {};
-    //gráfon végigmenni, minden csúcsot beállítani nem meglátogatottra, és a súlyok számát beállítja végtelenre.
+function findShortest(graph, start, end, max_lamps) {
+  let queue = [];
+  let distances = {};
+  let lampsTouched = {};
+  let path = {};
 
-    for (let node in exampleGraph) {
-      distances[node] = Infinity;
-      alreadyVisited[node] = false;
-      path[node] = null;
-    }
-  
-    distances[start] = 0;
-    currentQueue.push(start);
-  
-    while (currentQueue.length > 0) {
-      const currentNode = currentQueue.shift();
-      alreadyVisited[currentNode] = true;
-  
-      if (currentNode === end) {
-        break;
-      }
-  
-      const neighbors = exampleGraph[currentNode];
-  
-      for (let neighbor in neighbors) {
-        const distance = distances[currentNode] + neighbors[neighbor];
-  
-        if (distance < distances[neighbor] && !alreadyVisited[neighbor]) {
-          distances[neighbor] = distance;
-          path[neighbor] = currentNode;
-          currentQueue.push(neighbor);
-        }
-      }
-    }
-
-    // ez azt jelenti hogy nincs elérhető útvonal
-    if (path[end] === null) {
-      return null; 
-      
-    }
-  
-    // Útvonal visszafejtése
-    const shortestPath = [];
-    let currentNode = end;
-    let lamps = 0;
-  
-    while (currentNode !== start) {
-      if (exampleGraph[currentNode] && 'Specialnode' in exampleGraph[currentNode] && lamps < maxLamps) {
-        shortestPath.unshift('Specialnode');
-        lamps++;
-      }
-      shortestPath.unshift(currentNode);
-      currentNode = path[currentNode];
-    }
-  
-    shortestPath.unshift(start);
-  
-    return shortestPath;
+  for (let node in graph) {
+    distances[node] = Infinity;
+    lampsTouched[node] = 0;
+    path[node] = null;
   }
+
+  distances[start] = 0;
+  lampsTouched[start] = 0;
+  queue.push([distances[start], lampsTouched[start], start]);
+
+  while (queue.length > 0) {
+    queue.sort((a, b) => a[0] - b[0]);
+    let [currentDistance, currentLamps, currentNode] = queue.shift();
+
+    if (currentNode === end) {
+      break;
+    }
+
+    if (currentDistance > distances[currentNode] || currentLamps > lampsTouched[currentNode]) {
+      continue;
+    }
+
+    let neighbors = graph[currentNode];
+
+    for (let neighbor in neighbors) {
+      let distance = neighbors[neighbor];
+      let newDistance = distances[currentNode] + distance;
+      let newLamps = lampsTouched[currentNode] + (neighbor.startsWith('Specialnode') ? 1 : 0);
+
+      if (newDistance < distances[neighbor] && newLamps <= max_lamps) {
+        distances[neighbor] = newDistance;
+        lampsTouched[neighbor] = newLamps;
+        path[neighbor] = currentNode;
+        queue.push([distances[neighbor], lampsTouched[neighbor], neighbor]);
+      }
+    }
+  }
+
+  if (path[end] === null) {
+    return null;
+  }
+
+  let shortestPath = [];
+  let currentNode = end;
+
+  while (currentNode !== start) {
+    shortestPath.unshift(currentNode);
+    currentNode = path[currentNode];
+  }
+
+  shortestPath.unshift(start);
+
+  return shortestPath
+}
+
   //graph exportálás jsonbe
   function exportGraphToJSON(graph, fileName) {
     const data = JSON.stringify(graph, null, 2);
