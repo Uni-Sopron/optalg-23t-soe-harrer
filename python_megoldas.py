@@ -71,50 +71,49 @@ def find_shortest_path(graph, start, end, max_lamps):
     path = {}
 
     for node in graph:
-        distances[node] = float('inf')
-        lamps_touched[node] = 0
-        path[node] = None
+        distances[(node, 0)] = float('inf')  # Assign distance to node-lamp combination
+        lamps_touched[(node, 0)] = 0  # Assign lamps touched to node-lamp combination
+        path[(node, 0)] = None
 
-    distances[start] = 0
-    lamps_touched[start] = 0
-    queue.append((distances[start], lamps_touched[start], start))
+    distances[(start, 0)] = 0  # Use node-lamp combination as the key
+    lamps_touched[(start, 0)] = 0  # Use node-lamp combination as the key
+    queue.append((distances[(start, 0)], lamps_touched[(start, 0)], (start, 0)))  # Use node-lamp combination as the key
 
     while queue:
         queue.sort()
-        current_distance, current_lamps, current_node = queue.pop(0)
+        current_distance, current_lamps, (current_node, current_lamp) = queue.pop(0)  # Unpack node-lamp combination
 
         if current_node == end:
             break
 
-        if current_distance > distances[current_node] or current_lamps > lamps_touched[current_node]:
+        if current_distance > distances[(current_node, current_lamp)] or current_lamps > lamps_touched[(current_node, current_lamp)]:
             continue
 
         neighbors = graph[current_node]
 
         for neighbor, distance in neighbors.items():
-            new_distance = distances[current_node] + distance
-            new_lamps = lamps_touched[current_node] + (neighbor.startswith('Specialnode'))
+            new_distance = distances[(current_node, current_lamp)] + distance
+            new_lamps = lamps_touched[(current_node, current_lamp)] + (neighbor.startswith('Specialnode'))
 
-            if new_distance < distances[neighbor] and new_lamps <= max_lamps:
-                distances[neighbor] = new_distance
-                lamps_touched[neighbor] = new_lamps
-                path[neighbor] = current_node
-                queue.append((distances[neighbor], lamps_touched[neighbor], neighbor))
+            if new_distance < distances.get((neighbor, new_lamps), float('inf')) and new_lamps <= max_lamps:
+                distances[(neighbor, new_lamps)] = new_distance
+                lamps_touched[(neighbor, new_lamps)] = new_lamps
+                path[(neighbor, new_lamps)] = (current_node, current_lamp)  # Store the previous node-lamp combination
+                queue.append((distances[(neighbor, new_lamps)], lamps_touched[(neighbor, new_lamps)], (neighbor, new_lamps)))
 
-    if path[end] is None:
+    if path[(end, 0)] is None:
         return None
 
     shortest_path = []
-    current_node = end
+    current_node, current_lamp = (end, 0)
 
-    while current_node != start:
+    while current_node != start or current_lamp != 0:
         shortest_path.insert(0, current_node)
-        current_node = path[current_node]
+        current_node, current_lamp = path[(current_node, current_lamp)]  # Retrieve the previous node-lamp combination
 
     shortest_path.insert(0, start)
 
     return shortest_path
-
 def select_random_elements(array, count):
     shuffled = array[:]
     random.shuffle(shuffled)
