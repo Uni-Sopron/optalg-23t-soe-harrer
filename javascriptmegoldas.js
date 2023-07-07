@@ -7,7 +7,7 @@ function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
   let starterNode = "Egyetem";
   let finishNode = "Harrer";
 
-  // Normális lámpás csúcsok generálása
+  
   for (let i = 1; i <= normalLampCount; i++) {
     if (i === 1) {
       const nodeName = starterNode;
@@ -18,7 +18,7 @@ function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
     }
   }
 
-  // Speciális lámpás csúcsok generálása
+  
   for (let i = 1; i <= specialLampCount; i++) {
     const nodeName = `Specialnode${i}`;
     graph[nodeName] = {};
@@ -26,15 +26,15 @@ function generateGraphWithSpecialLamps(normalLampCount, specialLampCount) {
   const nodeName = finishNode;
   graph[nodeName] = {};
 
-  // Élek generálása
+  
   const nodes = Object.keys(graph);
 
   for (let i = 0; i < nodes.length; i++) {
     const currentNode = nodes[i];
-    const neighbors = nodes.slice(i + 1); // Csak a későbbi csúcsok között generál éleket
+    const neighbors = nodes.slice(i + 1); 
 
-    const numberOfEdges = randomNumber(0, neighbors.length); // Véletlenszerű élek száma
-    const selectedNeighbors = selectRandomElements(neighbors, numberOfEdges); // Véletlenszerűen kiválasztott szomszédok
+    const numberOfEdges = randomNumber(0, neighbors.length); 
+    const selectedNeighbors = selectRandomElements(neighbors, numberOfEdges); 
 
     for (let j = 0; j < selectedNeighbors.length; j++) {
       const neighborNode = selectedNeighbors[j];
@@ -61,35 +61,27 @@ function selectRandomElements(array, count) {
   return shuffled.slice(0, count);
 }
 
-function findShortest(graph, start, end, max_lamps) {
+function findShortestPath(graph, start, end, maxLamps) {
   let queue = [];
   let distances = {};
-  let lampsTouched = {};
+  let visited = {};
   let path = {};
 
   for (let node in graph) {
     distances[node] = Infinity;
-    lampsTouched[node] = 0;
+    visited[node] = false;
     path[node] = null;
   }
 
   distances[start] = 0;
-  lampsTouched[start] = 0;
-  queue.push([distances[start], lampsTouched[start], start]);
+  queue.push(start);
 
   while (queue.length > 0) {
-    queue.sort((a, b) => a[0] - b[0]);
-    let [currentDistance, currentLamps, currentNode] = queue.shift();
+    let currentNode = queue.shift();
+    visited[currentNode] = true;
 
     if (currentNode === end) {
       break;
-    }
-
-    if (
-      currentDistance > distances[currentNode] ||
-      currentLamps > lampsTouched[currentNode]
-    ) {
-      continue;
     }
 
     let neighbors = graph[currentNode];
@@ -97,15 +89,11 @@ function findShortest(graph, start, end, max_lamps) {
     for (let neighbor in neighbors) {
       let distance = neighbors[neighbor];
       let newDistance = distances[currentNode] + distance;
-      let newLamps =
-        lampsTouched[currentNode] +
-        (neighbor.startsWith("Specialnode") ? 1 : 0);
 
-      if (newDistance < distances[neighbor] && newLamps <= max_lamps) {
+      if (newDistance < distances[neighbor] && !visited[neighbor]) {
         distances[neighbor] = newDistance;
-        lampsTouched[neighbor] = newLamps;
         path[neighbor] = currentNode;
-        queue.push([distances[neighbor], lampsTouched[neighbor], neighbor]);
+        queue.push(neighbor);
       }
     }
   }
@@ -116,8 +104,13 @@ function findShortest(graph, start, end, max_lamps) {
 
   let shortestPath = [];
   let currentNode = end;
+  let lamps = 0;
 
   while (currentNode !== start) {
+    if (graph[currentNode] && "Specialnode" in graph[currentNode] && lamps < maxLamps) {
+      shortestPath.unshift("Specialnode");
+      lamps += 1;
+    }
     shortestPath.unshift(currentNode);
     currentNode = path[currentNode];
   }
@@ -127,16 +120,25 @@ function findShortest(graph, start, end, max_lamps) {
   return shortestPath;
 }
 
-const exampleGraph = require("./graph1.json");
+function selectRandomElements(array, count) {
+  let shuffled = array.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, count);
+}
 
-//kezdő, végső csúcs inicializálása, és amximum lámpa generálás
 
-const startNode = "Egyetem";
-const endNode = "Harrer";
-const maxLamps = 2;
+let startNode = "Egyetem";
+let endNode = "Harrer";
+let maxLamps = 2;
+let graph = require('./graph1.json')
 
-const shortestPath = findShortest(exampleGraph, startNode, endNode, maxLamps);
+let shortestPath = findShortestPath(graph, startNode, endNode, maxLamps);
 
-shortestPath === null
-  ? console.log("Nincs elérhető útvonal.")
-  : console.log("Legrövidebb út:", shortestPath.join(" -> "));
+if (shortestPath === null) {
+  console.log("Nincs elérhető útvonal.");
+} else {
+  console.log("Legrövidebb út:", shortestPath.join(" -> "));
+}
