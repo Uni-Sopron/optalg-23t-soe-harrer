@@ -2,8 +2,9 @@ from collections import deque
 import random
 import json
 
+
 def findShorthestPath(graph, start, end, max_lamps):
-    """ 
+    """
     Legrövidebb útvonalat keres az adott gráfban a kezdőponttól a végpontig, figyelembe véve a maximális lámpás kereszteződések számát.
 
     Args:
@@ -21,7 +22,7 @@ def findShorthestPath(graph, start, end, max_lamps):
     path = {}
 
     for node in graph:
-        distances[node] = float('inf')
+        distances[node] = float("inf")
         visited[node] = False
         path[node] = None
 
@@ -53,8 +54,12 @@ def findShorthestPath(graph, start, end, max_lamps):
     lamps = 0
 
     while current_node != start:
-        if graph[current_node] and 'Specialnode' in graph[current_node] and lamps < max_lamps:
-            shortest_path.insert(0, 'Specialnode')
+        if (
+            graph[current_node]
+            and "Specialnode" in graph[current_node]
+            and lamps < max_lamps
+        ):
+            shortest_path.insert(0, "Specialnode")
             lamps += 1
         shortest_path.insert(0, current_node)
         current_node = path[current_node]
@@ -71,35 +76,56 @@ def find_shortest_path(graph, start, end, max_lamps):
     path = {}
 
     for node in graph:
-        distances[(node, 0)] = float('inf')  # Assign distance to node-lamp combination
-        lamps_touched[(node, 0)] = 0  # Assign lamps touched to node-lamp combination
+        distances[(node, 0)] = float("inf")
+        lamps_touched[(node, 0)] = 0
         path[(node, 0)] = None
 
-    distances[(start, 0)] = 0  # Use node-lamp combination as the key
-    lamps_touched[(start, 0)] = 0  # Use node-lamp combination as the key
-    queue.append((distances[(start, 0)], lamps_touched[(start, 0)], (start, 0)))  # Use node-lamp combination as the key
+    distances[(start, 0)] = 0
+    lamps_touched[(start, 0)] = 0
+    queue.append(
+        (distances[(start, 0)], lamps_touched[(start, 0)], (start, 0))
+    )
 
     while queue:
         queue.sort()
-        current_distance, current_lamps, (current_node, current_lamp) = queue.pop(0)  # Unpack node-lamp combination
+        current_distance, current_lamps, (current_node, current_lamp) = queue.pop(
+            0
+        )
 
         if current_node == end:
             break
 
-        if current_distance > distances[(current_node, current_lamp)] or current_lamps > lamps_touched[(current_node, current_lamp)]:
+        if (
+            current_distance > distances[(current_node, current_lamp)]
+            or current_lamps > lamps_touched[(current_node, current_lamp)]
+        ):
             continue
 
         neighbors = graph[current_node]
 
         for neighbor, distance in neighbors.items():
             new_distance = distances[(current_node, current_lamp)] + distance
-            new_lamps = lamps_touched[(current_node, current_lamp)] + (neighbor.startswith('Specialnode'))
+            new_lamps = lamps_touched[(current_node, current_lamp)] + (
+                neighbor.startswith("Specialnode")
+            )
 
-            if new_distance < distances.get((neighbor, new_lamps), float('inf')) and new_lamps <= max_lamps:
+            if (
+                new_distance < distances.get((neighbor, new_lamps), float("inf"))
+                and new_lamps <= max_lamps
+            ):
                 distances[(neighbor, new_lamps)] = new_distance
                 lamps_touched[(neighbor, new_lamps)] = new_lamps
-                path[(neighbor, new_lamps)] = (current_node, current_lamp)  # Store the previous node-lamp combination
-                queue.append((distances[(neighbor, new_lamps)], lamps_touched[(neighbor, new_lamps)], (neighbor, new_lamps)))
+                path[(neighbor, new_lamps)] = (
+                    current_node,
+                    current_lamp,
+                )
+                queue.append(
+                    (
+                        distances[(neighbor, new_lamps)],
+                        lamps_touched[(neighbor, new_lamps)],
+                        (neighbor, new_lamps),
+                    )
+                )
 
     if path[(end, 0)] is None:
         return None
@@ -109,26 +135,31 @@ def find_shortest_path(graph, start, end, max_lamps):
 
     while current_node != start or current_lamp != 0:
         shortest_path.insert(0, current_node)
-        current_node, current_lamp = path[(current_node, current_lamp)]  # Retrieve the previous node-lamp combination
+        current_node, current_lamp = path[
+            (current_node, current_lamp)
+        ]
 
     shortest_path.insert(0, start)
 
     return shortest_path
+
+
 def select_random_elements(array, count):
     shuffled = array[:]
     random.shuffle(shuffled)
     return shuffled[:count]
 
-f = open('graph1.json')
+
+f = open("graph1.json")
 graph = json.load(f)
 
-start_node = 'Egyetem'
-end_node = 'Harrer'
+start_node = "Egyetem"
+end_node = "Harrer"
 max_lamps = 2
 
 shortest_path = findShorthestPath(graph, start_node, end_node, max_lamps)
 
 if shortest_path is None:
-    print('Nincs elérhető útvonal.')
+    print("Nincs elérhető útvonal.")
 else:
-    print('Legrövidebb út:', ' -> '.join(shortest_path))
+    print("Legrövidebb út:", " -> ".join(shortest_path))
