@@ -61,7 +61,7 @@ function selectRandomElements(array, count) {
   return shuffled.slice(0, count);
 }
 
-function findShortestPath(graph, start, end, maxLamps) {
+function findShorthestPath(graph, start, end, max_lamps) {
   let queue = [];
   let distances = {};
   let visited = {};
@@ -74,10 +74,17 @@ function findShortestPath(graph, start, end, maxLamps) {
   }
 
   distances[start] = 0;
-  queue.push(start);
+  queue.push([start, 0]);
 
   while (queue.length > 0) {
-    let currentNode = queue.shift();
+    let minIndex = 0;
+    for (let i = 1; i < queue.length; i++) {
+      if (distances[queue[i][0]] < distances[queue[minIndex][0]]) {
+        minIndex = i;
+      }
+    }
+
+    let [currentNode, lamps] = queue.splice(minIndex, 1)[0];
     visited[currentNode] = true;
 
     if (currentNode === end) {
@@ -93,7 +100,7 @@ function findShortestPath(graph, start, end, maxLamps) {
       if (newDistance < distances[neighbor] && !visited[neighbor]) {
         distances[neighbor] = newDistance;
         path[neighbor] = currentNode;
-        queue.push(neighbor);
+        queue.push([neighbor, lamps]);
       }
     }
   }
@@ -107,15 +114,19 @@ function findShortestPath(graph, start, end, maxLamps) {
   let lamps = 0;
 
   while (currentNode !== start) {
-    if (graph[currentNode] && "Specialnode" in graph[currentNode] && lamps < maxLamps) {
-      shortestPath.unshift("Specialnode");
+    if (
+      graph[currentNode] &&
+      graph[currentNode]["Specialnode"] &&
+      lamps < max_lamps
+    ) {
+      shortestPath.unshift(["Specialnode", lamps + 1]);
       lamps += 1;
     }
-    shortestPath.unshift(currentNode);
+    shortestPath.unshift([currentNode, lamps]);
     currentNode = path[currentNode];
   }
 
-  shortestPath.unshift(start);
+  shortestPath.unshift([start, lamps]);
 
   return shortestPath;
 }
@@ -135,10 +146,17 @@ let endNode = "Harrer";
 let maxLamps = 2;
 let graph = require('./graph1.json')
 
-let shortestPath = findShortestPath(graph, startNode, endNode, maxLamps);
+let shortestPath = findShorthestPath(graph, startNode, endNode, maxLamps);
 
 if (shortestPath === null) {
   console.log("Nincs elérhető útvonal.");
 } else {
-  console.log("Legrövidebb út:", shortestPath.join(" -> "));
+  let formattedPath = shortestPath.map(([node, lamps]) => {
+    if (node === "Specialnode") {
+      return `Specialnode${lamps}`;
+    }
+    return node;
+  });
+
+  console.log("Legrövidebb út:", formattedPath.join(" -> "));
 }

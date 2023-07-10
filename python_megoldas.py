@@ -1,6 +1,9 @@
 from collections import deque
 import random
 import json
+from collections import deque
+
+
 
 
 def findShorthestPath(graph, start, end, max_lamps):
@@ -16,7 +19,7 @@ def findShorthestPath(graph, start, end, max_lamps):
     Returns:
         list or None: A legrövidebb útvonal csúcsok listájaként, vagy None, ha nincs elérhető útvonal.
     """
-    queue = deque()
+    queue = []
     distances = {}
     visited = {}
     path = {}
@@ -27,10 +30,16 @@ def findShorthestPath(graph, start, end, max_lamps):
         path[node] = None
 
     distances[start] = 0
-    queue.append(start)
+    queue.append((start, 0))
 
     while queue:
-        current_node = queue.popleft()
+        # Find the node with the minimum distance in the queue
+        min_index = 0
+        for i in range(1, len(queue)):
+            if distances[queue[i][0]] < distances[queue[min_index][0]]:
+                min_index = i
+
+        current_node, lamps = queue.pop(min_index)
         visited[current_node] = True
 
         if current_node == end:
@@ -44,14 +53,13 @@ def findShorthestPath(graph, start, end, max_lamps):
             if new_distance < distances[neighbor] and not visited[neighbor]:
                 distances[neighbor] = new_distance
                 path[neighbor] = current_node
-                queue.append(neighbor)
+                queue.append((neighbor, lamps))
 
     if path[end] is None:
         return None
 
     shortest_path = []
     current_node = end
-    lamps = 0
 
     while current_node != start:
         if (
@@ -59,60 +67,12 @@ def findShorthestPath(graph, start, end, max_lamps):
             and "Specialnode" in graph[current_node]
             and lamps < max_lamps
         ):
-            shortest_path.insert(0, "Specialnode")
+            shortest_path.insert(0, ("Specialnode", lamps + 1))
             lamps += 1
-        shortest_path.insert(0, current_node)
+        shortest_path.insert(0, (current_node, lamps))
         current_node = path[current_node]
 
-    shortest_path.insert(0, start)
-
-    return shortest_path
-
-
-def find_shortest_path(graph, start, end, max_lamps):
-    queue = []
-    distances = {}
-    path = {}
-
-    for node in graph:
-        distances[(node, 0)] = float('inf')
-        path[(node, 0)] = None
-
-    distances[(start, 0)] = 0
-    queue.append((distances[(start, 0)], (start, 0)))
-
-    while queue:
-        queue.sort()
-        current_distance, (current_node, current_lamps) = queue.pop(0)
-
-        if current_node == end:
-            break
-
-        if current_distance > distances[(current_node, current_lamps)]:
-            continue
-
-        neighbors = graph[current_node]
-
-        for neighbor, distance in neighbors.items():
-            new_distance = distances[(current_node, current_lamps)] + distance
-            new_lamps = current_lamps + (neighbor.startswith('Specialnode'))
-
-            if new_distance < distances.get((neighbor, new_lamps), float('inf')) and new_lamps <= max_lamps:
-                distances[(neighbor, new_lamps)] = new_distance
-                path[(neighbor, new_lamps)] = (current_node, current_lamps)
-                queue.append((distances[(neighbor, new_lamps)], (neighbor, new_lamps)))
-
-    if path[(end, 0)] is None:
-        return None
-
-    shortest_path = []
-    current_node, current_lamps = (end, 0)
-
-    while current_node != start or current_lamps != 0:
-        shortest_path.insert(0, current_node)
-        current_node, current_lamps = path[(current_node, current_lamps)]
-
-    shortest_path.insert(0, start)
+    shortest_path.insert(0, (start, lamps))
 
     return shortest_path
 
@@ -135,4 +95,5 @@ shortest_path = findShorthestPath(graph, start_node, end_node, max_lamps)
 if shortest_path is None:
     print("Nincs elérhető útvonal.")
 else:
-    print("Legrövidebb út:", " -> ".join(shortest_path))
+    path_str = " -> ".join(node[0] for node in shortest_path)
+    print("Legrövidebb út:", path_str)
